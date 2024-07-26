@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #display {
+            width: 100%;
+            padding: 20px;
+            font-size: 2em;
+            text-align: right;
+            border: none;
+            background-color: #eee;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .row {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        button {
+            flex: 1;
+            padding: 20px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #ddd;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #ccc;
+        }
+
+        button:active {
+            background-color: #bbb;
+        }
+
+        button:nth-child(4) {
+            background-color: #ff8c00;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Calculator</h1>
+        <input type="text" id="display" disabled>
+        <div id="buttons">
+            <div class="row">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>+</button>
+            </div>
+            <div class="row">
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>-</button>
+            </div>
+            <div class="row">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>*</button>
+            </div>
+            <div class="row">
+                <button>0</button>
+                <button>=</button>
+                <button>C</button>
+                <button>/</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let buttons = document.getElementById('buttons');
+        let previousValue = '';
+        let currentValue = '';
+        let operator = '';
+      
+        buttons.addEventListener('click', (e) => {
+          if (e.target.tagName === 'BUTTON') {
+            let buttonText = e.target.textContent;
+      
+            if (buttonText === '=' || buttonText === '+' || buttonText === '-' || buttonText === '*' || buttonText === '/') {
+              if (buttonText === '=') {
+                calculate();
+              } 
+              else {
+                operator = buttonText;
+                previousValue = currentValue;
+                currentValue = '';
+                display.value = '';
+              }
+            } 
+            else if (buttonText === 'C') {
+              currentValue = '';
+              previousValue = '';
+              operator = '';
+              display.value = '';
+            } 
+            else {
+              currentValue += buttonText;
+              display.value = currentValue;
+            }
+          }
+        });
+      
+        function calculate() {
+          let result = 0;
+          switch (operator) {
+            case '+':
+              result = parseFloat(previousValue) + parseFloat(currentValue);
+              break;
+            case '-':
+              result = parseFloat(previousValue) - parseFloat(currentValue);
+              break;
+            case '*':
+              result = parseFloat(previousValue) * parseFloat(currentValue);
+              break;
+            case '/':
+              if (parseFloat(currentValue) === 0) {
+                result = 'Error: Division by zero!';
+              } else {
+                result = parseFloat(previousValue) / parseFloat(currentValue);
+              }
+              break;
+          }
+          display.value = result;
+          previousValue = '';
+          currentValue = '';
+          operator = '';
+        }
+      </script>
+</body>
+</html>

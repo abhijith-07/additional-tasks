@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #todo-input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #add-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #add-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #todo-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+            display: inline-block;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        #todo-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #todo-list li:last-child {
+            border-bottom: none;
+        }
+
+        #todo-list li.completed {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .delete-btn {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <input type="text" id="todo-input" placeholder="Add new todo">
+    <button id="add-btn">Add</button> <br><br>
+    <ul id="todo-list"></ul>
+
+    <script>
+        const todoInput = document.getElementById('todo-input');
+        const addBtn = document.getElementById('add-btn');
+        const todoList = document.getElementById('todo-list');
+
+        addBtn.addEventListener('click', addTodo);
+
+        function addTodo() {
+            const todoText = todoInput.value;
+            if (todoText !== '') {
+                const todoElement = document.createElement('li');
+                todoElement.textContent = todoText;
+                todoElement.addEventListener('click', toggleCompleted);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.addEventListener('click', deleteTodo);
+
+                todoElement.appendChild(deleteBtn);
+                todoList.appendChild(todoElement);
+                todoInput.value = '';
+            }
+        }
+
+        function toggleCompleted(event) {
+            if (event.target.tagName === 'LI') {
+                event.target.classList.toggle('completed');
+            }
+        }
+
+        function deleteTodo(event) {
+            event.target.parentNode.remove();
+        }
+    </script>
+</body>
+</html>

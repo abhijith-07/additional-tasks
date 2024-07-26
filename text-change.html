@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change text</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        #text {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        #changeTextBtn {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        #changeTextBtn:hover {
+            background-color: #0056b3;
+        }
+
+        #changeTextBtn:active {
+            background-color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p id="text">This is some text.</p>
+        <button id="changeTextBtn">Change Text</button>
+    </div>
+    
+    <script>
+        const changeTextBtn = document.getElementById('changeTextBtn');
+        const text = document.getElementById('text');
+
+        changeTextBtn.addEventListener('click', () => {
+            text.innerHTML = 'The text has been changed!';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bg changer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .colorBtn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .colorBtn.red {
+            background-color: red;
+        }
+
+        .colorBtn.green {
+            background-color: green;
+        }
+
+        .colorBtn.blue {
+            background-color: blue;
+        }
+
+        .colorBtn.yellow {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="button-container">
+        <button class="colorBtn red" onclick="changeColor('red')">Red</button>
+        <button class="colorBtn green" onclick="changeColor('green')">Green</button>
+        <button class="colorBtn blue" onclick="changeColor('blue')">Blue</button>
+        <button class="colorBtn yellow" onclick="changeColor('yellow')">Yellow</button>
+    </div>
+
+    <script>
+        function changeColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+    </script>
+</body>
+
+</html>
